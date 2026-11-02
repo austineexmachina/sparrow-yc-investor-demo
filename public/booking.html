@@ -1,0 +1,410 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sparrow Map · Entertainment booking</title><link rel="stylesheet" href="/static/booking.css?v=20261007-gps3d-v2"><script defer src="/static/vendor/maplibre-gl.js"></script><script defer src="/static/home-map-3d.js"></script><script defer src="/static/booking.js?v=20261009-map3d-v1"></script><link rel="stylesheet" href="/static/vendor/maplibre-gl.css"><link rel="stylesheet" href="/static/booking-aviation-theme.css"><script defer src="/static/booking-aviation-theme.js"></script></head><body>
+<nav class="sparrow-global-shell"
+     aria-label="Sparrow applications">
+  <a class="sparrow-shell-brand" href="/" aria-label="Sparrow Love Edit home">
+    <strong>SPARROW</strong><span>LOVE EDIT</span>
+  </a>
+
+  <div class="sparrow-shell-workspaces">
+    <a href="/studio">Creator Studio</a>
+    <a href="/film">Hollywood Editing Studio</a>
+    <a href="/ecosystem" aria-current="page">Ecosystem</a>
+    <a href="/flight-travels">Flight &amp; Travels</a>
+  </div>
+
+  <div class="sparrow-shell-ecosystem"
+       aria-label="Ecosystem applications">
+    <a href="/ecosystem">Ecosystem Home</a>
+    <a href="/ecosystem/book">Booking</a>
+    <a href="/ecosystem/flights">Flights &amp; Travel</a>
+    <a href="/ecosystem/map">World Map</a>
+    <a href="/ecosystem/live">Live Map</a>
+  </div>
+</nav><header><a href="/ecosystem">← Sparrow Ecosystem</a><strong>Sparrow Map · Since 2026</strong><button id="theme-toggle" type="button" class="secondary" aria-pressed="false">Dark mode</button></header><main><section id="nearme-location-gate" role="region" aria-label="Sparrow location access"><strong>Use your current location</strong><p id="nearme-location-message">Allow Sparrow to access your device location to find active entertainers near you.</p><button id="nearme-allow" type="button">Allow Location</button></section>
+<header id="sparrow-reference-header" class="sparrow-reference-header">
+  <a class="sparrow-reference-brand" href="/ecosystem" aria-label="Sparrow">
+    <span class="sparrow-reference-bird"
+      data-sparrow-bird
+      role="img"
+      aria-label="Sparrow">
+  <svg
+    class="sparrow-real-bird"
+    viewBox="0 0 96 72"
+    focusable="false"
+    aria-hidden="true">
+
+    <defs>
+      <linearGradient id="sparrowBody" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#d9c3a2"/>
+        <stop offset=".48" stop-color="#9c7658"/>
+        <stop offset="1" stop-color="#624636"/>
+      </linearGradient>
+
+      <linearGradient id="sparrowWing" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#8f725d"/>
+        <stop offset=".55" stop-color="#5d493c"/>
+        <stop offset="1" stop-color="#382d28"/>
+      </linearGradient>
+
+      <linearGradient id="sparrowChest" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#eee0c9"/>
+        <stop offset="1" stop-color="#b99775"/>
+      </linearGradient>
+
+      <linearGradient id="sparrowHead" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#c7b39c"/>
+        <stop offset=".55" stop-color="#8e735f"/>
+        <stop offset="1" stop-color="#594338"/>
+      </linearGradient>
+
+      <filter id="sparrowShadow"
+              x="-30%"
+              y="-30%"
+              width="160%"
+              height="170%">
+        <feDropShadow
+          dx="0"
+          dy="3"
+          stdDeviation="2.4"
+          flood-color="#000000"
+          flood-opacity=".34"/>
+      </filter>
+    </defs>
+
+    <g class="sparrow-real-bird-art" filter="url(#sparrowShadow)">
+
+      <!-- tail -->
+      <path
+        class="sparrow-tail"
+        d="M18 45
+           C10 48 5 54 2 61
+           C11 59 20 55 27 50
+           Z"
+        fill="#5b4639"/>
+
+      <path
+        d="M19 47
+           C12 52 8 57 6 62
+           C15 58 22 54 28 49
+           Z"
+        fill="#80634f"/>
+
+      <!-- main body -->
+      <ellipse
+        cx="49"
+        cy="40"
+        rx="28"
+        ry="17"
+        transform="rotate(-8 49 40)"
+        fill="url(#sparrowBody)"/>
+
+      <!-- pale chest -->
+      <path
+        d="M47 27
+           C57 29 66 35 68 44
+           C63 52 53 56 44 53
+           C48 46 50 37 47 27Z"
+        fill="url(#sparrowChest)"/>
+
+      <!-- wing -->
+      <path
+        class="sparrow-wing"
+        d="M27 33
+           C37 26 51 27 63 35
+           C58 39 53 45 51 52
+           C42 50 34 45 27 37
+           C25 35 25 34 27 33Z"
+        fill="url(#sparrowWing)"/>
+
+      <!-- wing feather layers -->
+      <path
+        d="M31 35
+           C39 33 48 35 57 40
+           C50 40 44 42 39 45"
+        fill="none"
+        stroke="#ad9279"
+        stroke-width="2"
+        stroke-linecap="round"
+        opacity=".75"/>
+
+      <path
+        d="M34 39
+           C41 38 47 41 53 44"
+        fill="none"
+        stroke="#3c302b"
+        stroke-width="2"
+        stroke-linecap="round"
+        opacity=".85"/>
+
+      <path
+        d="M38 43
+           C43 43 47 45 50 47"
+        fill="none"
+        stroke="#bca28a"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        opacity=".65"/>
+
+      <!-- neck -->
+      <path
+        d="M58 25
+           C65 26 70 31 72 37
+           L62 42
+           C58 36 55 30 58 25Z"
+        fill="#705344"/>
+
+      <!-- head -->
+      <ellipse
+        cx="66"
+        cy="20"
+        rx="16"
+        ry="13"
+        transform="rotate(-8 66 20)"
+        fill="url(#sparrowHead)"/>
+
+      <!-- cheek -->
+      <path
+        d="M58 21
+           C62 16 69 15 75 18
+           C76 23 73 28 68 30
+           C63 29 59 26 58 21Z"
+        fill="#d8c5a9"
+        opacity=".9"/>
+
+      <!-- dark eye stripe -->
+      <path
+        d="M56 18
+           C62 14 69 14 76 17
+           C73 19 69 20 64 20
+           C61 20 58 19 56 18Z"
+        fill="#3a302b"/>
+
+      <!-- eye -->
+      <circle
+        cx="68"
+        cy="17.8"
+        r="2.6"
+        fill="#111111"/>
+
+      <circle
+        cx="69"
+        cy="16.8"
+        r=".8"
+        fill="#ffffff"/>
+
+      <!-- beak -->
+      <path
+        d="M79 20
+           L94 24
+           L79 27
+           C82 24 82 22 79 20Z"
+        fill="#a7794e"/>
+
+      <path
+        d="M79 24
+           L93 24"
+        stroke="#6d4b34"
+        stroke-width="1.2"
+        stroke-linecap="round"/>
+
+      <!-- throat detail -->
+      <path
+        d="M57 24
+           C62 23 66 25 69 29
+           C64 29 60 28 57 26Z"
+        fill="#4a3932"
+        opacity=".72"/>
+
+      <!-- legs -->
+      <path
+        d="M47 53 L45 64 M57 52 L58 63"
+        fill="none"
+        stroke="#705039"
+        stroke-width="2"
+        stroke-linecap="round"/>
+
+      <!-- feet -->
+      <path
+        d="M42 64
+           C45 62 48 62 50 64
+           M55 63
+           C58 61 61 62 63 64"
+        fill="none"
+        stroke="#705039"
+        stroke-width="1.7"
+        stroke-linecap="round"/>
+    </g>
+  </svg>
+</span>
+    <span class="sparrow-reference-wordmark">Sparrow</span>
+  </a>
+  <strong class="sparrow-reference-title">Booking Map</strong>
+  <div class="sparrow-reference-header-actions">
+    <button type="button" data-reference-action="filters" aria-label="Open filters">
+      <svg viewBox="0 0 24 24" focusable="false"><path d="M4 6h16M4 12h16M4 18h16M9 4v4M15 10v4M11 16v4"></path></svg>
+    </button>
+    <button type="button" data-reference-action="notifications" aria-label="Open booking notifications">
+      <svg viewBox="0 0 24 24" focusable="false"><path d="M6 16h12l-1.3-2.2V10a4.7 4.7 0 0 0-9.4 0v3.8L6 16zM10 19h4"></path></svg>
+    </button>
+  </div>
+</header><div id="sparrow-reference-searchbar" class="sparrow-reference-searchbar">
+  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="m20 20-4.2-4.2M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4z"></path></svg>
+  <input id="sparrow-reference-q" type="search" autocomplete="off" placeholder="Search Lagos &#183; Areas, venues, entertainers" aria-label="Search areas, venues and entertainers">
+</div><section id="map" class="sparrow-nearme-ride-map" aria-label="Entertainers near me">
+  <!-- SPARROW FRONTEND GPS 3D V2 -->
+<div id="sparrow-frontend-gps-layer"
+     class="sparrow-frontend-gps-layer"
+     aria-live="polite">
+
+  <div class="sparrow-frontend-gps-card">
+
+    <div class="sparrow-frontend-gps-icon" aria-hidden="true">
+      <span></span>
+    </div>
+
+    <div class="sparrow-frontend-gps-copy">
+      <strong>Use your current location</strong>
+      <p>
+        Allow Sparrow to use your precise device location
+        to show entertainers near you.
+      </p>
+    </div>
+
+    <button
+      id="sparrow-frontend-gps-button"
+      type="button">
+      Allow Location
+    </button>
+
+    <div
+      id="sparrow-frontend-gps-status"
+      class="sparrow-frontend-gps-status"
+      aria-live="polite">
+    </div>
+
+  </div>
+</div>
+  <div class="nearme-map-topbar">
+    <strong>Entertainers Near Me</strong>
+    <span id="map-state">Precise device GPS required.</span>
+  </div>
+  <div id="nearme-map-controls" class="nearme-map-controls" aria-label="Map controls">
+    <button type="button" data-map-action="locate" aria-label="Use precise GPS">GPS</button>
+    <button type="button" data-map-action="recenter" aria-label="Recenter on GPS">Center</button>
+    <button type="button" data-map-action="zoom-in" aria-label="Zoom in">+</button>
+    <button type="button" data-map-action="zoom-out" aria-label="Zoom out">-</button>
+    <button type="button" id="toggle-3d" aria-pressed="true">3D</button>
+  </div>
+  <div class="nearme-map-badge" aria-live="polite">GPS locked | ADM1 boundary</div>
+</section>
+
+<section class="sheet"><div id="sparrow-reference-panel" class="sparrow-reference-panel">
+  <div class="sparrow-reference-handle" aria-hidden="true"></div>
+  <div class="sparrow-reference-heading"><strong id="sparrow-reference-count">0 Entertainers Active Near You</strong><button type="button" id="sparrow-reference-see-all">See all</button></div>
+  <div id="sparrow-reference-filters" class="sparrow-reference-filters" role="tablist" aria-label="Entertainer categories"></div>
+</div><h1>Who or where do you need?</h1><p id="status" role="status"></p><form id="search"><select id="scope" aria-label="Discovery area"><option value="worldwide">Worldwide</option><option value="nearby">Near a selected map point</option><option value="remote">Remote services worldwide</option></select><select id="country" aria-label="Service country"><option value="">All countries</option></select><select id="kind" aria-label="Listing type"><option value="professional">Entertainment professionals</option><option value="venue">Venues and studios</option></select><input id="query" maxlength="100" placeholder="Profession, provider name or city…" aria-label="Search listings"><label><input id="travel-only" type="checkbox"> Providers willing to travel</label><button>Find entertainment services</button></form><button id="locate" type="button">Use my location · optional</button><p class="fine">Choose a country, search a city in published listings, or click the map. Tile providers receive map-area requests. Device location is optional and separate from account verification. Remote providers can appear without a public pin.</p><p id="pin-state" role="status">No public listing pin selected.</p><div id="results"></div><button id="next-results" type="button" hidden>Next listings</button><details><summary>Publish a bookable service or venue</summary><p>For onsite services, click a public business or meeting point on the map. Remote-only services can publish without coordinates.</p><form id="listing"><select id="listing-kind"><option value="professional">Professional service</option><option value="venue">Venue or studio</option></select><select id="service-mode" aria-label="Service delivery"><option value="onsite">Onsite</option><option value="remote">Remote only</option><option value="both">Onsite and remote</option></select><select id="listing-country" required aria-label="Service country"></select><label><input id="willing-travel" type="checkbox"> Willing to travel for events or productions</label><input id="title" placeholder="Listing name" minlength="3" maxlength="100" required><input id="category" placeholder="Entertainment category" minlength="3" maxlength="80" required><textarea id="description" placeholder="Describe your service, availability and pricing terms" minlength="10" maxlength="1500" required></textarea><label>Starting price (optional)<input id="price-amount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Price on request"></label><select id="price-currency" aria-label="Price currency"><option>NGN</option><option>USD</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AED</option><option>AUD</option><option>JPY</option><option>CHF</option><option>ZAR</option><option>GHS</option><option>KES</option><option>INR</option></select><select id="pricing-unit" aria-label="Price unit"><option value="event">Per event</option><option value="hour">Per hour</option><option value="day">Per day</option></select><input id="address" placeholder="Public service location" minlength="3" maxlength="200" required><label><input id="publish-pin" type="checkbox"> Publish the selected service pin to signed-in members (required for onsite services)</label><button>Publish listing</button></form><h3>Your listings</h3><div id="mine"></div></details><section aria-labelledby="marketplace-overview-title"><h2 id="marketplace-overview-title">Marketplace overview</h2><p id="dashboard-state" role="status" aria-live="polite">Loading marketplace data…</p><div class="marketplace-stats"><article><span>Active bookable entertainers</span><strong id="stat-entertainers">—</strong></article><article><span>Booking requests</span><strong id="stat-bookings">—</strong></article><article><span>Response rate</span><strong id="stat-response-rate">—</strong><small id="stat-response-note">Calculated from persisted requests</small></article></div><button id="dashboard-refresh" type="button" class="secondary">Refresh overview</button></section><h2>Booking activity</h2><button id="reload" type="button">Refresh requests</button><div id="requests"></div><p class="fine">Requests require provider acceptance. The provider sets a total price and the customer confirms it before Sparrow opens hosted Flutterwave checkout. A booking is marked paid only after server-side transaction verification. Refunds remain pending until Flutterwave confirms their final status. Provider settlements are held until payout onboarding is configured.</p></section></main><dialog id="request-dialog"><h2 id="request-title"></h2><form id="request"><select id="request-mode" aria-label="Booking delivery"></select><select id="destination-country" aria-label="Destination country"><option value="">Select destination country</option></select><textarea id="travel-details" maxlength="1000" placeholder="Travel arrangements, destination, proposed budget and permissions (required for travel bookings)"></textarea><p class="fine">Times below use your device timezone. The provider sees the same instant in their own local timezone.</p><label>Start (your local time)<input id="start" type="datetime-local" required></label><label>End (your local time)<input id="end" type="datetime-local" required></label><input id="event-location" placeholder="Event or filming location" minlength="3" maxlength="200" required><textarea id="brief" placeholder="What do you need? Include scope and proposed budget." minlength="10" maxlength="1500" required></textarea><button>Send booking request</button><button id="close" type="button">Close</button><p id="dialog-state" role="status"></p></form></dialog><dialog id="chat-dialog"><div class="chat-header"><h2>Private Sparrow Inbox</h2><p id="chat-state" role="status">Booking conversation</p></div><div id="booking-messages" class="chat-scroll"></div><div class="chat-tools"><button id="older-chat" type="button" hidden>Earlier messages</button><button id="refresh-booking-chat" type="button">Refresh</button><button id="close-chat" type="button">Close</button></div><form id="booking-chat" class="chat-composer"><textarea id="chat-text" maxlength="2000" required placeholder="Message the entertainer…"></textarea><button aria-label="Send message">➤</button></form></dialog><footer class="map-footer">Sparrow Love Edit · Since 2026 · © 2026 All rights reserved.<br>Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> · <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener">Report a map issue</a></footer><nav id="sparrow-reference-nav" class="sparrow-reference-nav" aria-label="Booking navigation">
+  <button type="button" data-reference-nav="home" aria-label="Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-5v-6h-5v6h-5A1.5 1.5 0 0 1 3 19.5z"></path></svg><span>Home</span>
+  </button>
+  <button type="button" data-reference-nav="bookings" aria-label="Bookings">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg><span>Bookings</span>
+  </button>
+  <button type="button" data-reference-nav="messages" aria-label="Messages">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4.5 3V17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"></path><path d="M7 10h10M7 13h7"></path></svg><span>Messages</span>
+  </button>
+  <button type="button" data-reference-nav="profile" aria-label="Profile">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path></svg><span>Profile</span>
+  </button>
+</nav><script>
+/* SPARROW FRONTEND GPS BRIDGE V2 */
+(function(){
+  function boot(){
+    const layer=document.getElementById('sparrow-frontend-gps-layer');
+    const button=document.getElementById('sparrow-frontend-gps-button');
+    const status=document.getElementById('sparrow-frontend-gps-status');
+    const locate=document.getElementById('locate');
+
+    if(!layer||!button)return;
+
+    function hide(){
+      layer.classList.add('sparrow-gps-hidden');
+    }
+
+    function show(message){
+      layer.classList.remove('sparrow-gps-hidden');
+      if(message)status.textContent=message;
+    }
+
+    function gpsReady(){
+      const c=window.center;
+      const lat=Number(c?.lat);
+      const lng=Number(c?.lng);
+      return Number.isFinite(lat)&&
+             Number.isFinite(lng)&&
+             lat>=-90&&lat<=90&&
+             lng>=-180&&lng<=180;
+    }
+
+    button.addEventListener('click',function(){
+      if(!navigator.geolocation){
+        status.textContent='This browser does not provide device location.';
+        return;
+      }
+
+      button.disabled=true;
+      status.textContent='Requesting your precise device location...';
+
+      try{
+        if(locate)locate.click();
+      }catch(_e){}
+
+      window.setTimeout(function(){
+        if(gpsReady()){
+          hide();
+        }else{
+          button.disabled=false;
+          status.textContent=
+            'Allow precise location in your browser, then try again.';
+        }
+      },1200);
+    });
+
+    /*
+     * Existing booking.js remains authoritative for GPS acquisition.
+     * We only observe its exposed center state for frontend visibility.
+     */
+    const sync=function(){
+      if(gpsReady()){
+        hide();
+        button.disabled=false;
+      }
+    };
+
+    window.__sparrowFrontendGpsSync=sync;
+
+    /*
+     * Poll only the GPS state, not the DOM.
+     * This does not create a render observer or mutate the map.
+     */
+    let tries=0;
+    const wait=function(){
+      sync();
+      tries++;
+      if(!gpsReady()&&tries<30){
+        window.setTimeout(wait,500);
+      }
+    };
+
+    wait();
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',boot,{once:true});
+  }else{
+    boot();
+  }
+})();
+</script>
+<!-- SPARROW FRONTEND GPS BRIDGE V2 -->
+</body></html>
+
