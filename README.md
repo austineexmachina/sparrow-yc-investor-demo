@@ -4,7 +4,7 @@
 
 **[Open SPARROW LOVE EDIT on Cloudflare](https://sparrow-love-edit-web.austinechibueze905.workers.dev/)**
 
-The public Sparrow web portal introduces the platform's major components: **Creator Studio, Sparrow Ecosystem, Sparrow Live Streaming, Sparrow Quest, Film Studio, Cartoon Studio, Entertainers & Booking, Aviation & Travel, and AI Templates**.
+The public Sparrow web portal introduces the platform's major components: **Creator Studio, Sparrow Ecosystem, Sparrow Live Streaming, Sparrow Quest, Film Studio, Entertainers & Booking, Aviation & Travel, and AI Templates**.
 
 The portal is live at a permanent Cloudflare Workers `workers.dev` address using a free-plan deployment connected to this repository's `main` branch.
 
@@ -23,7 +23,7 @@ This separately deployed Next.js preview displays Sparrow's template editor, sce
 | Sparrow Ecosystem | Documented in portal; backend not publicly deployed |
 | Sparrow Live Streaming | Documented in portal; WebRTC and FastAPI backend not publicly deployed |
 | Sparrow Quest | Product section present; no independently verified public Quest route |
-| Film and Cartoon Studios | Documented in portal; backend not publicly deployed |
+| Film Studio | Documented in portal; backend not publicly deployed |
 | Entertainment Booking and Aviation | Documented in portal; backend not publicly deployed |
 | Full AI generation and production export | Provider integrations and real end-to-end public workflow not fully verified |
 
