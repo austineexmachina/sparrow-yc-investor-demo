@@ -7,6 +7,7 @@ const STATIC_ROUTES = Object.freeze({
   '/payment-return': '/index.html',
   '/film': '/film.html',
   '/ecosystem': '/ecosystem.html',
+  '/ecosystem/stream': '/live-stream.html',
   '/ecosystem/book': '/booking.html',
   '/flight-travels': '/aviation.html',
   '/ecosystem/flights': '/aviation.html',
