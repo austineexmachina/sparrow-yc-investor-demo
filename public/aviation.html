@@ -1,0 +1,119 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Flights & Travel · Sparrow</title><link rel="stylesheet" href="/static/aviation.css"><link rel="stylesheet" href="/static/vendor/maplibre-gl.css"><script defer src="/static/vendor/maplibre-gl.js"></script><script defer src="/static/aviation-map.js"></script><script defer src="/static/aviation.js"></script><script defer src="/static/home-map-3d.js"></script><link rel="stylesheet" href="/static/booking-aviation-theme.css"><script defer src="/static/booking-aviation-theme.js"></script></head><body>
+<nav class="sparrow-global-shell"
+     aria-label="Sparrow applications">
+  <a class="sparrow-shell-brand" href="/" aria-label="Sparrow Love Edit home">
+    <strong>SPARROW</strong><span>LOVE EDIT</span>
+  </a>
+
+  <div class="sparrow-shell-workspaces">
+    <a href="/studio">Creator Studio</a>
+    <a href="/film">Hollywood Editing Studio</a>
+    <a href="/ecosystem">Ecosystem</a>
+    <a href="/flight-travels" aria-current="page">Flight &amp; Travels</a>
+  </div>
+
+  <div class="sparrow-shell-ecosystem"
+       aria-label="Ecosystem applications">
+    <a href="/ecosystem">Ecosystem Home</a>
+    <a href="/ecosystem/book">Booking</a>
+    <a href="/ecosystem/flights">Flights &amp; Travel</a>
+    <a href="/ecosystem/map">World Map</a>
+    <a href="/ecosystem/live">Live Map</a>
+  </div>
+</nav><header><a href="/">← Sparrow Love Edit</a><strong>SPARROW FLIGHT &amp; TRAVELS</strong><button id="theme-toggle" type="button" class="secondary" aria-pressed="false">Dark mode</button></header><main><section class="aviation-hero"><div><p class="eyebrow">YOUR NEXT DESTINATION</p><h1>A world of possibilities.<br>One place to begin.</h1><p>Scheduled flights and private charters, offered by aviation companies approved to list on Sparrow.</p><p class="hero-tag">Worldwide routes · Operator-managed requests</p></div><div class="sky-scene" aria-label="Live-style 3D flight visualization"><div class="flight-sky"><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div><div class="cloud cloud-three"></div><div class="flight-route"><span class="airport airport-origin"><b>ORIGIN</b><i></i></span><span class="route-arc"></span><span class="airport airport-destination"><b>DESTINATION</b><i></i></span><div class="jet jet-live"><i class="fuselage"></i><i class="wing left-wing"></i><i class="wing right-wing"></i><i class="tail left-tail"></i><i class="tail right-tail"></i><i class="cockpit"></i><i class="engine left-engine"></i><i class="engine right-engine"></i></div></div><div class="flight-readout"><strong>3D ROUTE PREVIEW</strong><span>Illustrative route animation · no live telemetry</span></div></div></div></div></section>
+
+
+      <h2 id="aviation-map-title">3D World Flight Map</h2>
+      <p>
+        Follow published operator routes across an ultra-clear 3D world.
+        Routes show published schedules only. Aircraft positions require an authorized live telemetry feed.
+      </p>
+    </div>
+
+    
+      
+    </div>
+  </div>
+
+  </div>
+
+    <aside class="aviation-flight-tracker" aria-live="polite">
+      <div class="tracker-kicker">FLIGHT TRACKER</div>
+      <h3 id="aviation-tracker-title">Select a published route</h3>
+
+      <div class="tracker-route">
+        <strong id="aviation-tracker-origin">---</strong>
+        <span>?</span>
+        <strong id="aviation-tracker-destination">---</strong>
+      </div>
+
+      <p id="aviation-tracker-company">
+        Published operator route
+      </p>
+
+      <div class="tracker-state">
+        <span class="tracker-dot" aria-hidden="true"></span>
+        <span id="aviation-tracker-state">Route available</span>
+      </div>
+
+      <div class="tracker-note">
+        Actual aircraft telemetry is shown only when supplied by the responsible
+        airline, flight company or approved tracking source. Sparrow does not
+        fabricate live aircraft positions.
+      </div>
+    </aside>
+
+    <div class="aviation-airport-legend" aria-label="Map legend">
+      <span><i class="legend-airport"></i> International airport</span>
+      <span><i class="legend-route"></i> Operator route</span>
+      <span><i class="legend-aircraft"></i> Live aircraft telemetry · unavailable</span>
+    </div>
+  </div>
+
+  
+</section>
+
+<p id="status" role="status"></p><nav class="tabs" aria-label="Flights workspace"><button type="button" data-tab="travel" aria-pressed="true">Find a flight</button><button type="button" data-tab="activity" aria-pressed="false">My requests</button><button type="button" data-tab="operator" aria-pressed="false">Aviation company</button><button type="button" data-tab="review" aria-pressed="false" id="review-tab" hidden>Company review</button></nav><section id="travel"><div class="section-title"><h2>Where will you go next?</h2><span>Scheduled / charter</span></div><form id="search" class="search-panel"><label>Service<select id="kind"><option value="scheduled">Scheduled airline flight</option><option value="charter">Private aircraft charter</option></select></label><label>From · airport code<input id="origin" maxlength="3" pattern="[A-Za-z]{3}" placeholder="e.g. ABV"></label><label>To · airport code<input id="destination" maxlength="3" pattern="[A-Za-z]{3}" placeholder="e.g. LHR"></label><label>Destination country<select id="destination-country"><option value="">Any country</option></select></label><label>Destination state<input id="destination-state" maxlength="120" placeholder="e.g. Greater London"></label><label>Choose airline<select id="airline"><option value="">Any approved airline / operator</option></select></label><label>Departure date · UTC<input id="day" type="date"></label><label>Passengers<input id="passengers" type="number" min="1" max="900" value="1" required></label><button>Find flights ↗</button></form><p class="fine">Airport codes and routes are operator supplied. Search dates use UTC. Times display in your device timezone. Sparrow can send a ticket-booking request to an approved airline, flight company or agent. The responsible operator/agent issues the ticket and handles payment, itinerary changes and flight fulfillment.</p><div id="offers" class="offers"></div><button id="next-offers" type="button" hidden>Next offers</button></section><section id="activity" hidden><h2>Your flight and charter requests</h2><button id="refresh-requests" type="button">Refresh status</button><div id="requests"></div></section><section id="operator" hidden>
+<div class="section-title"><div><p class="eyebrow">SPARROW FLIGHT &amp; TRAVELS</p><h2>Your aviation company</h2></div><span id="company-state">Company setup</span></div>
+<nav class="operator-nav" aria-label="Aviation company workspace">
+<button type="button" data-operator-view="dashboard" aria-pressed="true">Dashboard</button>
+<button type="button" data-operator-view="manage">Manage Flights</button>
+<button type="button" data-operator-view="settings">Company Settings</button>
+</nav>
+<section id="operator-view-dashboard" class="operator-subview">
+<div class="operator-dashboard">
+<article class="dashboard-card"><span>Flights Listed</span><strong id="metric-flights">0</strong><small>Active operator offers</small></article>
+<article class="dashboard-card"><span>Requests</span><strong id="metric-requests">0</strong><small id="metric-pending">0 pending</small></article>
+<article class="dashboard-card"><span>Accepted Bookings</span><strong id="metric-accepted">0</strong><small>Accepted / ticketing / ticketed</small></article>
+<article class="dashboard-card"><span>Available Capacity</span><strong id="metric-capacity">0</strong><small>Across future active offers</small></article>
+</div>
+<div class="dashboard-financial-grid">
+<article class="dashboard-financial-card"><span>Operator-supplied booking value ? This Month</span><div id="financial-current"></div><small>Accepted, ticketing and ticketed request value recorded by Sparrow. This is not settlement-verified revenue.</small></article>
+<article class="dashboard-financial-card"><span>Average accepted booking value ? Flight</span><div id="financial-average"></div><small>Current-month booked value divided by distinct booked flights.</small></article>
+<article class="dashboard-financial-card"><span>Previous Month</span><div id="financial-previous"></div><small id="financial-previous-label">Previous month booked value</small></article>
+<article class="dashboard-financial-card"><span>Booking value trend</span><div id="financial-trend"></div><small>Month over month, per currency.</small></article>
+</div>
+<div class="dashboard-history">
+<div class="dashboard-section-title"><h3>Booking Value History</h3><button id="dashboard-refresh" type="button" class="secondary">Refresh</button></div>
+<p class="fine">Real aviation booking records only. Currency totals remain separate; Sparrow does not invent payment or settlement records.</p>
+<div id="billing-history"></div>
+</div>
+<div class="dashboard-columns">
+<section><div class="dashboard-section-title"><h3>Upcoming flights</h3><button id="dashboard-manage-flights" type="button" class="secondary">Manage Flights</button></div><div id="upcoming-flights"></div></section>
+<section><h3>Recent requests</h3><div id="dashboard-requests"></div></section>
+</div>
+</section>
+<section id="operator-view-manage" class="operator-subview" hidden>
+<h2>Manage Flights</h2><p class="fine">Publish and withdraw operator-managed scheduled flights and private charter slots. Existing approval, capacity, pricing and ticketing rules remain enforced by Sparrow.</p>
+<section id="dispatch" class="manage-flight-editor"><h3>Publish an available flight or charter slot</h3><form id="offer" class="form-grid"><label>Type<select id="offer-kind"><option value="scheduled">Scheduled flight</option><option value="charter">Private charter slot</option></select></label><label>Offer title<input id="offer-title" minlength="3" maxlength="120" required></label><label>Departure airport code<input id="offer-origin" pattern="[A-Z]{3}" maxlength="3" required></label><label>Arrival airport code<input id="offer-destination" pattern="[A-Z]{3}" maxlength="3" required></label><label>Departure airport / city<input id="origin-name" minlength="3" maxlength="150" required></label><label>Arrival airport / city<input id="destination-name" minlength="3" maxlength="150" required></label><label>Origin country<select id="offer-origin-country" required><option value="">Choose country</option></select></label><label>Origin state / region<input id="offer-origin-state" maxlength="120"></label><label>Destination country<select id="offer-destination-country" required><option value="">Choose country</option></select></label><label>Destination state / region<input id="offer-destination-state" maxlength="120"></label><label>Airline / flight company<input id="offer-airline-name" minlength="2" maxlength="150" required placeholder="Operating airline or charter company"></label><label>Departure · device local time<input id="departure" type="datetime-local" required></label><label>Arrival · device local time<input id="arrival" type="datetime-local" required></label><label>Aircraft description<input id="aircraft" minlength="3" maxlength="100" required></label><label>Internal aircraft / fleet identifier<input id="aircraft-id" minlength="3" maxlength="40" required></label><label>Available passenger capacity<input id="capacity" type="number" min="1" max="900" required></label><label>Ticketing integration<select id="ticketing-provider"><option value="manual">Operator-managed ticketing</option><option value="duffel">Duffel live ticketing</option></select></label><label>Provider offer ID<input id="provider-offer-id" maxlength="120" placeholder="Required for Duffel live ticketing"></label><label>Price in currency minor units<input id="price" type="number" min="0" max="100000000000" required><small>Scheduled: per passenger. Charter: whole aircraft. USD 125.00 = 12500; JPY 125 = 125. Charter 0 means request a quote.</small></label><label>Currency<select id="currency"><option>USD</option><option>NGN</option><option>EUR</option><option>GBP</option><option>CAD</option><option>AED</option><option>AUD</option><option>JPY</option><option>CHF</option><option>ZAR</option><option>GHS</option><option>KES</option><option>INR</option></select></label><label>Baggage terms<textarea id="baggage" minlength="5" maxlength="500" required></textarea></label><label class="wide">Cancellation and changes<textarea id="cancellation" minlength="10" maxlength="1000" required></textarea></label><button>Publish operator offer</button></form></section>
+<h3>Your published offers</h3><div id="own-offers"></div>
+<h3>Traveller requests</h3><div id="incoming"></div>
+</section>
+<section id="operator-view-settings" class="operator-subview" hidden>
+<h2>Company Settings</h2>
+<p class="fine">Your registered company information and aviation credentials are stored with your company profile. Credential files remain private.</p>
+<details id="registration"><summary>Company profile & credentials</summary><p>Company identity, operating permission, government credentials and the credential-associated email are managed here. Changing company details returns the application to review and hides listings until current approval is restored.</p><form id="company" class="form-grid"><label>Company name<input id="company-name" minlength="3" maxlength="120" required></label><label>Company country<select id="company-country" required></select></label><label>Business registration reference<input id="registration-reference" minlength="3" maxlength="150" required></label><label>Operating permission authority<input id="authority" minlength="3" maxlength="150" required></label><label>Operating permission reference<input id="permission" minlength="3" maxlength="150" required></label><label>Permission expiry<input id="expiry" type="date" required></label><label>Company website<input id="website" type="url" placeholder="https://" maxlength="500" required></label><label>Authorized contact name<input id="contact-name" minlength="3" maxlength="100" required></label><label>Company contact email<input id="contact-email" type="email" maxlength="200" required></label><label>Phone with country code<input id="contact-phone" placeholder="+234…" maxlength="16" required></label><label><input id="scheduled-service" type="checkbox"> Scheduled flights</label><label><input id="charter-service" type="checkbox"> Private charters</label><label class="wide"><input id="authorized" type="checkbox" required> I am authorized to represent this company and the supplied information is accurate.</label><label class="wide"><input id="company-terms" type="checkbox" required> I accept Sparrow listing review, will publish only offers I am authorized to fulfil, and will provide accurate inventory, pricing and cancellation terms. Listing approval does not replace aviation permissions.</label><button>Submit for independent review</button></form><div id="credentials-panel" class="credential-panel" hidden><div class="credential-warning"><strong>Government-issued credentials required</strong><p>Sparrow Document Verifier checks file signatures, size and SHA-256 integrity, then records your declared issuer and licence dates. These checks do not authenticate a regulator or prove legal authority. A reviewer must verify the original issuer and current licence against the official jurisdictional registry before activation. Generated, altered, fabricated or AI-created certificates are prohibited.</p></div><form id="credentials" class="form-grid" enctype="multipart/form-data"><label>Credential-associated email<input id="credential-email" type="email" maxlength="254" required><small>Email used when the aviation credential was acquired/issued. Sparrow will send the verification OTP here. After verification this email is locked.</small></label><label>Government business certificate<input id="business-certificate" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" required><small>Original government-issued certificate/license. Maximum 20 MB.</small></label><label>Business certificate number<input id="certificate-number" minlength="3" maxlength="200" required></label><label>Business certificate issuing authority<input id="certificate-authority" minlength="3" maxlength="200" required></label><label>Business certificate country<select id="certificate-country" required><option value="">Choose country</option></select></label><label>Aviation licence / operating certificate<input id="aviation-license" type="file" accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" required><small>Original licence/certificate issued by the applicable aviation authority. Maximum 20 MB.</small></label><label>Aviation licence number<input id="license-number" minlength="3" maxlength="200" required></label><label>Aviation licence issuing authority<input id="license-authority" minlength="3" maxlength="200" required></label><label>Aviation licence country<select id="license-country" required><option value="">Choose country</option></select></label><label>Licence issue date<input id="license-issue-date" type="date" required></label><label>Licence expiry date<input id="license-expiry" type="date" required></label><label class="wide"><input id="original-documents" type="checkbox" required> I confirm these are genuine original government/aviation-authority-issued documents. I understand fabricated, altered, generated or AI-created certificates are prohibited.</label><button>Submit credentials and send OTP</button></form><div id="credential-otp" class="otp-panel" hidden><h3>Verify credential email</h3><p>Enter the six-digit OTP sent to <strong id="credential-otp-email"></strong>. The code expires in two minutes.</p><form id="credential-verify"><label>OTP<input id="credential-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required></label><button>Verify credential email only</button><button id="credential-resend" type="button" class="secondary">Resend OTP</button></form></div><p id="credential-state" class="fine"></p></div></details>
+<div id="credential-summary" class="credential-summary" hidden></div>
+</section>
+</section>
+<section id="review" hidden><h2>Aviation company listing review</h2><p>Sparrow Document Verifier checks document integrity and matches the submitted identifiers. Before listing approval, independently verify the issuing authority, current licence status and company identity against the official regulator and business registry; record both source records. Upload appearance or AI checks cannot prove authenticity. If a trusted registry host is not configured or evidence is inconclusive, keep the application pending.</p><button id="refresh-review" type="button">Refresh queue</button><section class="review-card" aria-labelledby="global-aviation-title"><h3 id="global-aviation-title">Sparrow Flight &amp; Travels activity</h3><p id="global-aviation-scope">Loading verified Sparrow platform activity…</p><div id="global-aviation-metrics"></div><p id="global-aviation-limits">External global traffic, market share and airline profits require licensed authoritative data; unavailable values stay blank.</p></section><div id="queue"></div></section></main><dialog id="request-dialog"><p class="eyebrow">YOUR TRAVEL REQUEST</p><h2 id="request-title"></h2><div id="request-summary"></div><form id="booking"><label>Passengers<input id="request-passengers" type="number" min="1" max="900" required></label><label>Contact name<input id="traveller-name" minlength="3" maxlength="100" required></label><label>Contact email<input id="traveller-email" type="email" maxlength="200" required></label><label>Trip purpose<select id="travel-purpose"><option value="personal">Personal travel</option><option value="business">Business travel</option><option value="meet_customer">Meet my customer</option></select></label><label>Destination country<select id="request-destination-country"><option value="">Select country</option></select></label><label>Destination state / region<input id="request-destination-state" maxlength="120" placeholder="State, province or region"></label><label class="wide">Travel needs<textarea id="notes" maxlength="1000" placeholder="Group travel, accessibility needs or charter requirements. Do not submit passport data here."></textarea></label><label><input id="booking-terms" type="checkbox" required> I have read the operator's baggage and cancellation terms. This is a request, not a ticket or payment confirmation.</label><button>Book ticket · send request</button><button id="close-request" type="button" class="secondary">Close</button><p class="fine">International travel is supported, including entertainers travelling to meet customers. An approved airline, flight company or agent is responsible for ticket issuance, payment, passenger documents, schedule changes and flight fulfillment.</p><p id="dialog-state" role="status"></p></form></dialog><footer>Sparrow Love Edit · Since 2026 · <a href="/ecosystem">About / Terms / Account</a><br>© 2026 Sparrow Love Edit. All rights reserved.</footer></body></html>
