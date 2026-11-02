@@ -2,7 +2,7 @@
 
 **Public Cloudflare URL:** https://sparrow-love-edit-web.austinechibueze905.workers.dev/
 
-This repository now deploys a mirror of the **actual frontend HTML, CSS and JavaScript** from the private Sparrow Love Edit repository, not a custom investor landing page.
+This repository deploys a snapshot of the **actual frontend HTML, CSS and JavaScript** from the private Sparrow Love Edit repository, not a custom investor landing page.
 
 Source snapshot: `austineexmachina/sparrow-love-edit`, commit `ff7325930f355141f62c0ef78d595d63d62ae76d`. UI files were copied from `static/` with their existing layout and relative assets. Navigation links to the retired Cartoon Studio were removed. Other source files were not changed in the private repository.
 
