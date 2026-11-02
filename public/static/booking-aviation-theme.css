@@ -1,0 +1,24 @@
+:root{--sparrow-accent:#ff5a1f;--sparrow-accent-dark:#e84b12}
+body button:not(.maplibregl-ctrl button){background:var(--sparrow-accent);color:#fff}
+body button:not(.maplibregl-ctrl button):hover{background:var(--sparrow-accent-dark)}
+body a{color:var(--sparrow-accent-dark)}
+body :focus-visible{outline:3px solid var(--sparrow-accent);outline-offset:3px}
+#theme-toggle{min-height:44px;white-space:nowrap}
+.sparrow-card-price{margin-top:8px;color:var(--sparrow-accent-dark);font-weight:700}
+.marketplace-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0}
+.marketplace-stats article{display:grid;gap:8px;padding:18px;border:1px solid #ece9e6;border-radius:18px;background:#fff}
+.marketplace-stats article span,.marketplace-stats small{color:#66615d;font-size:13px}
+.marketplace-stats article strong{font-size:28px;overflow-wrap:anywhere}
+body[data-theme=dark]{background:#11130f;color:#f5f5f3;color-scheme:dark}
+body[data-theme=dark]>header,body[data-theme=dark] .sparrow-global-shell{background:#191b18;color:#f5f5f3}
+body[data-theme=dark] main,body[data-theme=dark] section,body[data-theme=dark] .sheet{color:#f5f5f3}
+body[data-theme=dark] .search-panel,body[data-theme=dark] .flight-card,body[data-theme=dark] .request-card,body[data-theme=dark] .review-card,body[data-theme=dark] .manage-flight-editor,body[data-theme=dark] details,body[data-theme=dark] dialog,body[data-theme=dark] article,body[data-theme=dark] #nearme-location-gate,body[data-theme=dark] .dashboard-history{background:#1b1e1a;color:#f5f5f3;border-color:#343832}
+body[data-theme=dark] input,body[data-theme=dark] select,body[data-theme=dark] textarea{background:#242722;color:#f5f5f3;border-color:#4a4f47}
+body[data-theme=dark] .fine,body[data-theme=dark] small,body[data-theme=dark] .dashboard-item p{color:#c0c5bd}
+body[data-theme=dark] .secondary,body[data-theme=dark] .tabs button{background:#343832;color:#f5f5f3}
+body[data-theme=dark] .tabs button[aria-pressed=true]{background:var(--sparrow-accent);color:#fff}
+body[data-theme=dark] .pill{background:#4a2c20;color:#ffd9ca}
+body[data-theme=dark] .marketplace-stats article{background:#1b1e1a;color:#f5f5f3;border-color:#343832}
+body[data-theme=dark] .marketplace-stats article span,body[data-theme=dark] .marketplace-stats small{color:#c0c5bd}
+body[data-theme=dark] #status,body[data-theme=dark] #dialog-state{color:#ff9a78}
+@media(max-width:700px){#theme-toggle{min-height:44px;padding:10px 14px}.marketplace-stats{grid-template-columns:1fr}body[data-theme=dark] .sheet{background:#1b1e1a}}
