@@ -1,0 +1,206 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sparrow Studio · Live Streaming</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}
+body{margin:0;background:var(--stream-bg,#fff);color:#101828;transition:background-color .2s ease}main{max-width:900px;padding:20px 16px 64px;margin:auto}
+header{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;padding:8px 0 24px}
+a{color:#175cd3;text-decoration:none}h1{font-size:28px;margin:6px 0}h2{font-size:19px}
+.muted{color:#667085}.panel{border:1px solid #e4e7ec;padding:18px;border-radius:18px;margin:16px 0;background:#fff}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+button{border:1px solid #d0d5dd;background:#fff;color:#101828;font-weight:700;border-radius:999px;padding:12px 20px;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}.primary{background:#e11d48;color:#fff;border-color:#e11d48}.primary[aria-pressed=true]{background:#111827;border-color:#111827}
+button:focus-visible,a:focus-visible{outline:3px solid #36a2ff;outline-offset:3px}
+#stream-stage,#viewer-stage{background:var(--stage-bg,#111827);border-radius:16px;padding:8px;transition:background-color .2s ease}video{width:100%;background:transparent;aspect-ratio:16/9;object-fit:contain;border-radius:14px}
+#status{min-height:22px}#error:not(:empty){color:#b42318;background:#fef3f2;padding:12px;border-radius:10px}
+#rooms{display:grid;gap:10px}#rooms button{text-align:left;border-radius:12px;width:100%;font-weight:600}
+.color-control{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0 14px;color:#344054}
+.color-control label{font-weight:650}.color-control input[type=color]{width:48px;height:42px;padding:2px;border:1px solid #d0d5dd;background:#fff;border-radius:10px;cursor:pointer}
+#theme-indicator{font-size:12px;color:#475467}
+.pill{display:inline-block;background:#e8f4ff;color:#175cd3;padding:5px 9px;border-radius:99px;font-size:12px}
+@media(max-width:600px){main{padding:14px}h1{font-size:24px}}
+</style></head><body><main>
+<header><a href="/ecosystem">← Sparrow Ecosystem</a><a href="/analytics/live">Live Streaming Analytics</a></header>
+<h1>Sparrow Live Streaming</h1>
+<p class="muted">Broadcast your own camera and microphone. Only you can start or end your session. Browser-to-browser live video works best with a stable connection.</p>
+<section class="panel" aria-label="Stream controls"><h2>Your stream <span id="broadcast-state" class="pill">Offline</span></h2>
+<div class="color-control"><label for="stream-background">My streaming background</label><input id="stream-background" type="color" value="#ffffff" aria-label="Choose streaming background color"><button id="reset-background" type="button">Reset color</button><span id="theme-indicator" role="status">Personal background</span></div>
+<div id="stream-stage"><video id="local" autoplay muted playsinline aria-label="Your camera preview"></video></div>
+<div class="actions"><button id="go-live" class="primary" type="button" aria-pressed="false">Go Live</button>
+<button id="mute" type="button" disabled>Mute microphone</button>
+<button id="camera" type="button" disabled>Turn camera off</button></div>
+<p id="status" role="status" aria-live="polite">Ready to go live.</p><div id="error" role="alert"></div></section>
+<section class="panel" aria-label="Live broadcasts"><h2>Watch live</h2>
+<button id="refresh" type="button">Refresh live rooms</button><div id="rooms"></div>
+<p class="muted" id="room-status" role="status"></p>
+<div id="viewer-stage"><video id="remote" autoplay playsinline controls aria-label="Live broadcast viewer"></video></div>
+<button id="leave" type="button" hidden>Leave broadcast</button>
+</section>
+<p class="muted">This first release uses WebRTC peer-to-peer connections (maximum eight viewers per broadcaster). It does not yet provide global-scale SFU delivery or guaranteed NAT traversal. Camera permission requires HTTPS or localhost. A WebRTC-compatible media service and TURN infrastructure are needed before scaling worldwide.</p>
+</main><script>
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const start=$("go-live"),local=$("local"),remote=$("remote"),status=$("status"),error=$("error"),state=$("broadcast-state");
+let media=null,roomId=null,role=null,signal=null,peers=new Map(),viewerConnection=null;
+const bgPicker=$("stream-background"),themeIndicator=$("theme-indicator");
+const themeKey="sparrow-live-background-v1";
+const validColor=value=>/^#[0-9a-f]{6}$/i.test(value);
+function applyTheme(value,{broadcast=false}={}){
+ const color=validColor(value)?value.toLowerCase():"#ffffff";
+ document.body.style.setProperty("--stream-bg",color);
+ document.body.style.setProperty("--stage-bg",color);
+ bgPicker.value=color;
+ try{localStorage.setItem(themeKey,color)}catch{}
+ themeIndicator.textContent="Background: "+color.toUpperCase();
+ if(broadcast && role==="host")write({type:"theme",data:{color}});
+}
+try{applyTheme(localStorage.getItem(themeKey)||"#ffffff")}catch{applyTheme("#ffffff")}
+bgPicker.addEventListener("input",()=>applyTheme(bgPicker.value,{broadcast:true}));
+$("reset-background").addEventListener("click",()=>applyTheme("#ffffff",{broadcast:true}));
+let config={iceServers:[{urls:"stun:stun.l.google.com:19302"}]};
+async function refreshIceConfig(){
+ const r=await fetch("/api/live-streaming/ice-config",{credentials:"same-origin",cache:"no-store"});
+ if(!r.ok)throw Error("Cannot retrieve secure media connection settings; sign in to Sparrow.");
+ const data=await r.json();
+ if(!Array.isArray(data.iceServers)||!data.iceServers.length)throw Error("No media connections configured.");
+ config={iceServers:data.iceServers};
+ return data.turnConfigured;
+}
+const origin=location.origin;
+const wsUrl=(stream,kind)=>origin.replace(/^http/,"ws")+"/api/live-streaming/signal/"+encodeURIComponent(stream)+"/"+kind;
+const write=(message)=>{if(signal&&signal.readyState===WebSocket.OPEN)signal.send(JSON.stringify(message))};
+const say=(s)=>{status.textContent=s;};const fail=(e)=>{error.textContent=e?.message||String(e)};
+async function request(path,method="GET"){
+ const response=await fetch("/api/live-streaming/"+path,{method,credentials:"same-origin",headers:method!=="GET"?{"Origin":origin}:{}});
+ const data=await response.json().catch(()=>({detail:"Unexpected server response"}));
+ if(!response.ok)throw Error(data.detail||"Sparrow service unavailable");
+ return data;
+}
+function closePeer(peer){const pc=peers.get(peer);if(pc){pc.close();peers.delete(peer)}}
+function stopLocal(){
+ for(const id of [...peers.keys()])closePeer(id);
+ viewerConnection?.close();viewerConnection=null;
+ signal?.close();signal=null;
+ media?.getTracks().forEach(t=>t.stop());media=null;local.srcObject=null;
+ roomId=null;role=null;
+ start.disabled=false;start.textContent="Go Live";start.setAttribute("aria-pressed","false");
+ state.textContent="Offline";$("mute").disabled=true;$("camera").disabled=true;
+}
+function connect(stream,kind){
+ const ws=new WebSocket(wsUrl(stream,kind));signal=ws;
+ return new Promise((resolve,reject)=>{
+  let confirmed=false;
+  ws.onerror=()=>{if(!confirmed)reject(Error("Unable to connect to live signaling. Check the server and your session."))};
+  ws.onclose=()=>{if(!confirmed)reject(Error("Sparrow rejected the live connection. Verify your Ecosystem account and session."));if(signal===ws&&roomId){say("Live signaling disconnected.");if(role==="host")stopLocal()}};
+  ws.onmessage=async event=>{
+   try{
+    const m=JSON.parse(event.data);
+    if(m.type==="joined"){
+      if(kind==="viewer" && validColor(m.theme))$("viewer-stage").style.backgroundColor=m.theme;
+      confirmed=true;resolve(ws);
+      if(kind==="host"){
+       for(const viewer of (m.viewers||[]))await createOffer(viewer);
+       write({type:"theme",data:{color:bgPicker.value}});
+      }
+      return
+     }
+    if(kind==="host"){
+     if(m.type==="viewer_joined"){await createOffer(m.peer);write({type:"theme",data:{color:bgPicker.value}})}
+     if(m.type==="answer"){const pc=peers.get(m.peer);if(pc)await pc.setRemoteDescription(m.data)}
+     if(m.type==="ice"){const pc=peers.get(m.peer);if(pc&&m.data.candidate)await pc.addIceCandidate(m.data)}
+     if(m.type==="viewer_left")closePeer(m.peer);
+     if(m.type==="ended")stopLocal();
+    }else{
+     if(m.type==="theme" && validColor(m.data?.color)){
+      $("viewer-stage").style.backgroundColor=m.data.color;
+     }
+     if(m.type==="offer"){
+      if(viewerConnection)viewerConnection.close();
+      viewerConnection=new RTCPeerConnection(config);
+      viewerConnection.ontrack=e=>{remote.srcObject=e.streams[0];$("room-status").textContent="Watching live";};
+      viewerConnection.onicecandidate=e=>{if(e.candidate)write({type:"ice",data:e.candidate.toJSON()})};
+      await viewerConnection.setRemoteDescription(m.data);
+      const answer=await viewerConnection.createAnswer();
+      await viewerConnection.setLocalDescription(answer);
+      write({type:"answer",data:viewerConnection.localDescription.toJSON()});
+     }
+     if(m.type==="ice"&&viewerConnection&&m.data.candidate)await viewerConnection.addIceCandidate(m.data);
+     if(m.type==="ended"||m.type==="host_disconnected")leave();
+    }
+   }catch(e){fail(e)}
+  };
+ });
+}
+async function createOffer(peer){
+ if(!media)return;
+ closePeer(peer);
+ const pc=new RTCPeerConnection(config);peers.set(peer,pc);
+ media.getTracks().forEach(track=>pc.addTrack(track,media));
+ pc.onicecandidate=e=>{if(e.candidate)write({type:"ice",peer,data:e.candidate.toJSON()})};
+ const offer=await pc.createOffer();await pc.setLocalDescription(offer);
+ write({type:"offer",peer,data:pc.localDescription.toJSON()});
+}
+async function goLive(){
+ if(roomId){await endLive();return}
+ error.textContent="";start.disabled=true;
+ try{
+  if(!navigator.mediaDevices?.getUserMedia)throw Error("Camera access requires HTTPS or localhost.");
+  await refreshIceConfig();
+  media=await navigator.mediaDevices.getUserMedia({video:true,audio:true});
+  local.srcObject=media;
+  const result=await request("go-live","POST");roomId=result.id;role="host";
+  await connect(roomId,"host");
+  start.textContent="End Live";start.setAttribute("aria-pressed","true");state.textContent="LIVE";
+  say("You're live. Viewers can now join your broadcast.");$("mute").disabled=false;$("camera").disabled=false;
+  await listRooms();
+ }catch(e){
+  if(roomId){try{await request("end-live/"+roomId,"POST")}catch{}}
+  stopLocal();fail(e);say("Live could not start.");
+ }finally{start.disabled=false}
+}
+async function endLive(){
+ start.disabled=true;
+ try{if(roomId)await request("end-live/"+roomId,"POST");say("Broadcast ended.");}
+ catch(e){fail(e);say("End request failed; retry if the server is still connected.");start.disabled=false;return}
+ stopLocal();await listRooms();
+}
+function leave(){
+ $("viewer-stage").style.backgroundColor="";
+ viewerConnection?.close();viewerConnection=null;
+ signal?.close();signal=null;remote.srcObject=null;
+ $("leave").hidden=true;$("room-status").textContent="You left the broadcast";roomId=null;role=null;
+}
+async function watch(id){
+ if(role==="host"){fail(Error("End your broadcast before watching another."));return}
+ leave();error.textContent="";
+ roomId=id;role="viewer";
+ try{await refreshIceConfig();await connect(roomId,"viewer");$("leave").hidden=false;$("room-status").textContent="Connecting to broadcaster…"}
+ catch(e){leave();fail(e)}
+}
+async function listRooms(){
+ try{
+  const data=await request("rooms");$("rooms").replaceChildren();
+  if(!data.rooms.length){$("room-status").textContent="No live broadcasts right now.";return}
+  $("room-status").textContent=data.rooms.length+" active broadcasts";
+  data.rooms.forEach(room=>{
+   const button=document.createElement("button");button.type="button";
+   button.textContent="🔴 Live broadcast · "+room.id.slice(0,15);
+   button.addEventListener("click",()=>watch(room.id));$("rooms").append(button);
+  });
+ }catch(e){$("room-status").textContent="Unable to load live rooms.";fail(e)}
+}
+start.addEventListener("click",goLive);
+$("leave").addEventListener("click",leave);
+$("refresh").addEventListener("click",listRooms);
+$("mute").addEventListener("click",()=>{
+ if(!media)return;const track=media.getAudioTracks()[0];if(!track)return;
+ track.enabled=!track.enabled;$("mute").textContent=track.enabled?"Mute microphone":"Unmute microphone";
+});
+$("camera").addEventListener("click",()=>{
+ if(!media)return;const track=media.getVideoTracks()[0];if(!track)return;
+ track.enabled=!track.enabled;$("camera").textContent=track.enabled?"Turn camera off":"Turn camera on";
+});
+window.addEventListener("pagehide",()=>{media?.getTracks().forEach(t=>t.stop());signal?.close()});
+listRooms();
+})();
+</script></body></html>
