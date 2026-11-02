@@ -1,5 +1,11 @@
 # Sparrow Love Edit — YC Investor Demo
 
+## Public GitHub Website (share this with YC)
+
+**[Open Sparrow Love Edit on GitHub Pages](https://austineexmachina.github.io/sparrow-yc-investor-demo/)**
+
+The GitHub Pages URL forwards visitors to Sparrow's publicly deployed Creator Studio app. GitHub hosts the investor link/landing page; the interactive Next.js application remains hosted on Vercel.
+
 **Try Sparrow Creator Studio:** https://sparrow-yc-public-demo.vercel.app/template
 
 Sparrow Love Edit is building a creator-focused video editing platform. This public preview demonstrates the Sparrow Studio OS interface: a Dream Profession template editor with media selection, a scene timeline, and separate visual, audio, music, and sound-effects tracks.
