@@ -1,6 +1,12 @@
 # Sparrow Love Edit — YC Investor Demo
 
-## Public GitHub Website (share this with YC)
+## Official Sparrow Cloudflare Web Portal
+
+**[OPEN SPARROW LOVE EDIT — ALL COMPONENTS OVERVIEW](https://sparrow-love-edit-web.austinechibueze905.workers.dev/)**
+
+Cloudflare Free public web portal covers Creator Studio, Sparrow Ecosystem, Sparrow Live Streaming, Sparrow Quest, Film Studio, Cartoon Studio, Booking, Aviation, and AI Templates. The deployed web portal is a product overview with honest readiness labels: only Creator Studio has a separately available web preview; full FastAPI, account and streaming backends have not been deployed on Cloudflare Free.
+
+## Alternative GitHub Pages Investor Website
 
 **[Open Sparrow Love Edit on GitHub Pages](https://austineexmachina.github.io/sparrow-yc-investor-demo/)**
 
