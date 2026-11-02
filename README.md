@@ -1,40 +1,38 @@
-# Sparrow Love Edit — YC Investor Demo
+# Sparrow Love Edit — Public YC Investor Preview
 
-## Official Sparrow Cloudflare Web Portal
+## 🌐 Live website on Cloudflare Free
 
-**[OPEN SPARROW LOVE EDIT — ALL COMPONENTS OVERVIEW](https://sparrow-love-edit-web.austinechibueze905.workers.dev/)**
+**[Open SPARROW LOVE EDIT on Cloudflare](https://sparrow-love-edit-web.austinechibueze905.workers.dev/)**
 
-Cloudflare Free public web portal covers Creator Studio, Sparrow Ecosystem, Sparrow Live Streaming, Sparrow Quest, Film Studio, Cartoon Studio, Booking, Aviation, and AI Templates. The deployed web portal is a product overview with honest readiness labels: only Creator Studio has a separately available web preview; full FastAPI, account and streaming backends have not been deployed on Cloudflare Free.
+The public Sparrow web portal introduces the platform's major components: **Creator Studio, Sparrow Ecosystem, Sparrow Live Streaming, Sparrow Quest, Film Studio, Cartoon Studio, Entertainers & Booking, Aviation & Travel, and AI Templates**.
 
-## Alternative GitHub Pages Investor Website
+The portal is live at a permanent Cloudflare Workers `workers.dev` address using a free-plan deployment connected to this repository's `main` branch.
 
-**[Open Sparrow Love Edit on GitHub Pages](https://austineexmachina.github.io/sparrow-yc-investor-demo/)**
+## 🎬 Open the actual Creator Studio preview
 
-The GitHub Pages URL forwards visitors to Sparrow's publicly deployed Creator Studio app. GitHub hosts the investor link/landing page; the interactive Next.js application remains hosted on Vercel.
+**[Launch Sparrow Creator Studio](https://sparrow-yc-public-demo.vercel.app/template)**
 
-**Try Sparrow Creator Studio:** https://sparrow-yc-public-demo.vercel.app/template
+This separately deployed Next.js preview displays Sparrow's template editor, scene media slots, timeline, and visual/audio editing interface.
 
-Sparrow Love Edit is building a creator-focused video editing platform. This public preview demonstrates the Sparrow Studio OS interface: a Dream Profession template editor with media selection, a scene timeline, and separate visual, audio, music, and sound-effects tracks.
+## Product readiness
 
-## View the app
+| Product area | Current public availability |
+| --- | --- |
+| Cloudflare Sparrow portal | Live, publicly accessible |
+| Creator Studio template interface | Live, separately hosted |
+| Sparrow Ecosystem | Documented in portal; backend not publicly deployed |
+| Sparrow Live Streaming | Documented in portal; WebRTC and FastAPI backend not publicly deployed |
+| Sparrow Quest | Product section present; no independently verified public Quest route |
+| Film and Cartoon Studios | Documented in portal; backend not publicly deployed |
+| Entertainment Booking and Aviation | Documented in portal; backend not publicly deployed |
+| Full AI generation and production export | Provider integrations and real end-to-end public workflow not fully verified |
 
-**[Launch Sparrow Creator Studio →](https://sparrow-yc-public-demo.vercel.app/template)**
+**Note for YC reviewers:** The deployed Cloudflare website is a **product portal and investor preview**, not a claim that Sparrow's entire FastAPI/FFmpeg/Blender/WebRTC backend runs on Cloudflare Free. The Creator Studio interface is independently accessible, but a complete import → edit → render → export test of this public deployment has not been confirmed.
 
-The page is publicly accessible without a Vercel sign-in. The URL was checked on November 1, 2026, and returned the **Sparrow Studio OS** page, including the Astronaut template, three required media slots, and a timeline.
+## Alternate public GitHub Pages website
 
-For investors: open the link on desktop or mobile to explore the current Creator Studio experience. The **full product vision** includes additional AI-assisted editing, creator tools, live video, and entertainment services; this particular preview showcases **Creator Studio**, not all those other services.
+[GitHub Pages version of the Sparrow portal](https://austineexmachina.github.io/sparrow-yc-investor-demo/)
 
-## Demo scope and verification
+## Code and privacy
 
-- **Public page:** Published and reachable; the page content was verified remotely.
-- **Deployment:** Vercel production deployment of a pinned source commit, separate from the developer's current work.
-- **Interactive editing/export:** Live import → edit → render → export has **not** been fully independently verified on this public deployment. Some cloud AI features require backend configuration and are not guaranteed by the page being reachable.
-- **Backend:** This is **not** a claim that the full Sparrow FastAPI, WebRTC, or GPU rendering stack has been deployed.
-
-## Privacy and source
-
-This public repository contains the demo link and product overview only. The application's development source and provider credentials remain private. No customer information, secret keys, or production databases are published here.
-
----
-
-**Investor access:** https://sparrow-yc-public-demo.vercel.app/template
+This public repository holds the investor-facing website HTML and Cloudflare static-assets deployment configuration. The private production/development repositories, credentials, account data and unfinished Codex work are not published here.
