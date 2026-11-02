@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sparrow World Map</title><link rel="stylesheet" href="/static/vendor/maplibre-gl.css"><link rel="stylesheet" href="/static/home-map.css"><script defer src="/static/vendor/maplibre-gl.js"></script><script defer src="/static/home-map-3d.js"></script><script defer src="/static/home-map.js"></script></head><body>
+<nav class="sparrow-global-shell"
+     aria-label="Sparrow applications">
+  <a class="sparrow-shell-brand" href="/" aria-label="Sparrow Love Edit home">
+    <strong>SPARROW</strong><span>LOVE EDIT</span>
+  </a>
+
+  <div class="sparrow-shell-workspaces">
+    <a href="/studio">Creator Studio</a>
+    <a href="/film">Hollywood Editing Studio</a>
+    <a href="/ecosystem" aria-current="page">Ecosystem</a>
+    <a href="/flight-travels">Flight &amp; Travels</a>
+  </div>
+
+  <div class="sparrow-shell-ecosystem"
+       aria-label="Ecosystem applications">
+    <a href="/ecosystem">Ecosystem Home</a>
+    <a href="/ecosystem/book">Booking</a>
+    <a href="/ecosystem/flights">Flights &amp; Travel</a>
+    <a href="/ecosystem/map">World Map</a>
+    <a href="/ecosystem/live">Live Map</a>
+  </div>
+</nav><div id="map"><p id="map-loading">Opening Sparrow's geographical map…</p></div><header><strong>SPARROW WORLD MAP</strong><form id="find"><input id="profession" maxlength="100" aria-label="Profession or city" placeholder="Videographer, entertainer, city…"><select id="area" aria-label="Search area"><option value="worldwide">Worldwide</option><option value="nearby">Within 100 km of map centre</option></select><button>Find</button></form><div class="tools"><button id="near-me" type="button">Entertainers near me</button><button id="refresh" type="button">Refresh</button><button id="view-mode" type="button" aria-pressed="true">3D terrain + buildings · switch to 2D</button><button id="street-view" type="button">Street detail</button><button id="flat-fallback" type="button">Basic map</button><label><input id="active-only" type="checkbox"> Active check-ins only</label></div></header><div id="compass" aria-label="Cardinal directions: north, east, south, west"><span class="north">N</span><span class="east">E</span><span class="south">S</span><span class="west">W</span><span class="centre">✦</span></div><aside><p id="state" role="status"></p><p id="geometry-state" role="status">Loading real terrain and mapped buildings…</p><p class="legend"><i></i> Active check-in · Expires after 5 minutes without renewal</p><details id="member-list"><summary>View matching members</summary><div id="results"></div><button id="next" type="button" hidden>Next members</button></details><details><summary>Show my published service pin as active</summary><p>Choose your public service listing. This broadcasts a recent Sparrow check-in at that saved pin, not your live device position.</p><select id="own-listing" aria-label="Your public service listing"></select><button id="check-in" type="button">Check in for 5 minutes</button><button id="share-device" type="button">Share approximate device area for 5 minutes</button><button id="stop-device" type="button">Stop device sharing</button><p>Optional: your approximate area is visible to signed-in members for five minutes. Exact coordinates are not stored. This is a device report, not verified identity or real-time tracking.</p><button id="check-out" type="button">Go inactive</button><p id="my-state" role="status"></p><a href="/ecosystem/book" target="_top">Publish or manage a service location</a></details><p class="fine">Device location is optional. Zoom in for streets and place labels. Buildings appear at street zoom where mapped heights exist; heights may be estimated by the source. Terrain uses measured elevation data. Map pins are published by members and are not independently verified GPS positions. Empty areas mean no matching published check-ins.</p></aside></body></html>
