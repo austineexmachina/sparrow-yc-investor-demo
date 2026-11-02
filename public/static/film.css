@@ -1,0 +1,55 @@
+/* Movie Studio is a dedicated document; base controls share accessible studio styles. */
+.movie-studio{--accent:#e6bc77;--border:#363630;--muted:#b8b8aa;color:#eeeee5;background:#171918}
+.movie-studio header{background:#1b1e1b;border-color:var(--border);padding:24px 4%}
+.movie-studio main{max-width:1600px;padding:28px 4%}
+.movie-studio .wordmark{font-family:Georgia,serif;color:#e6bc77;letter-spacing:.12em}
+.movie-studio .wordmark span{letter-spacing:.35em;color:#c6c7b6}
+.movie-studio .card,.movie-studio .project-slider{background:#212421;border-color:var(--border);box-shadow:none;border-radius:12px}
+.movie-studio .studio-nav{gap:18px;padding-bottom:18px;border-bottom:1px solid var(--border);flex-wrap:wrap;margin-bottom:24px}
+.studio-label{font-size:.8rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-right:auto}
+.movie-studio button,.movie-studio .button,.movie-studio .file-button{color:#1a1d19;border-radius:6px}
+.movie-studio .secondary,.movie-studio .file-button{background:#333c30;color:#e1e6d6}
+.movie-studio .quiet{background:transparent;color:#e6bc77}
+.movie-studio input,.movie-studio textarea,.movie-studio select{background:#181c18;color:#eeeee5;border-color:#45483d;border-radius:6px}
+.movie-studio input::placeholder,.movie-studio textarea::placeholder{color:#969e91;opacity:1}
+.movie-studio fieldset{border:1px solid #42463c;border-radius:8px;margin:20px 0;padding:18px;min-width:0}
+.movie-studio legend{font-size:.78rem;letter-spacing:.08em;padding:0 8px;text-transform:uppercase;color:#e6bc77}
+.movie-studio .workspace{grid-template-columns:minmax(320px,.8fr) minmax(380px,1.2fr);gap:28px;align-items:start}
+.movie-studio h1{font-size:clamp(2.1rem,3.5vw,3.4rem);color:#f2f0dc;line-height:1.12}
+.movie-studio .eyebrow{color:#e6bc77}
+.movie-studio .project-slide{background:#252d24;border-color:#42483a;color:#e3e8d6;border-radius:8px;min-height:145px}
+.movie-studio .project-slide[aria-pressed="true"]{background:#3b4633;border-color:#e6bc77;color:#fff2d6}
+.movie-studio .project-slides{scrollbar-color:#657251 transparent}
+.movie-studio .project-slide-number,.movie-studio .step{color:#e6bc77}
+.movie-studio .dropzone{background:#1b221a;color:#e6bc77;border-color:#6d765c;border-radius:8px}
+.movie-studio #preview-empty,.movie-studio #job-state{background:#151b15;border-color:#363b30;color:#e1e6d6}
+.movie-studio video{border:1px solid #45483d;border-radius:8px;max-height:660px}
+.movie-studio .warnings{color:#f0c486}
+.movie-studio .shots{list-style:decimal;line-height:1.6}
+.movie-studio .shots li{border-left:2px solid #6d765c;padding:10px 12px;background:#1a2019;border-radius:0 6px 6px 0}
+.movie-studio .timeline-panel{margin:20px 0;padding:16px;border:1px solid #42463c;border-radius:9px;background:#1b1e1b}
+.movie-studio .audio-timeline{margin:20px 0;padding:14px;border:1px solid #42463c;border-radius:8px;background:#171b17}.movie-studio #audio-track-source{min-height:42px;max-width:min(100%,420px)}.movie-studio #audio-tracks{padding-left:1.5rem}
+.movie-studio .timeline-shot{margin:12px 0;padding:14px;border:1px solid #42483a;border-left:3px solid #e6bc77!important;border-radius:7px!important}
+.movie-studio .timeline-shot-head,.movie-studio .timeline-reorder{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.movie-studio .timeline-shot-head h4{margin:0;overflow-wrap:anywhere}
+.movie-studio .timeline-reorder button{min-width:42px;min-height:40px}
+.movie-studio .timeline-fields{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr));gap:10px;margin:12px 0}
+.movie-studio .timeline-field{display:grid;gap:5px;font-size:.78rem;color:#d5dbc8}
+.movie-studio .timeline-field input,.movie-studio .timeline-mix input{width:100%;min-width:0}
+.movie-studio .timeline-mix{display:flex;align-items:center;gap:10px;max-width:360px;margin:8px 0 14px}
+.movie-studio .timeline-mix input{max-width:110px}
+.movie-studio .timeline-shot p{margin:4px 0}
+.movie-studio dialog{background:#212421;color:#eeeee5;border-color:var(--border)}
+.movie-studio dialog::backdrop{background:#000b}
+.movie-studio #notice{background:#403624;color:#ffe1a3;border-color:#655332}
+.movie-studio :focus-visible{outline-color:#e6bc77}
+.movie-steps{display:flex;gap:12px;padding:0 0 28px;flex-wrap:wrap}
+.movie-steps a{padding:10px 15px;color:#d5dbc8;background:#262e23;border:1px solid #414c37;border-radius:6px;text-decoration:none;font-size:.8rem;letter-spacing:.05em}
+.movie-steps a:hover{border-color:#e6bc77;color:#ffe1a3}
+.movie-studio #film-direction{scroll-margin-top:24px}
+.movie-studio .auth{background:radial-gradient(ellipse at top right,#34402c,#212421 65%);max-width:650px}
+.movie-studio footer{max-width:1600px;color:#bbc0ae}
+@media(max-width:900px){.movie-studio .workspace{grid-template-columns:1fr}.movie-studio .studio-nav{gap:10px}.movie-studio main{padding:24px 4%}}
+@media(max-width:620px){.movie-studio .timeline-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.movie-studio .timeline-panel{padding:10px}.movie-studio .timeline-shot{padding:10px}}
+@media(max-width:480px){.movie-steps{gap:6px}.movie-steps a{padding:9px;font-size:.72rem}.movie-studio fieldset{padding:12px}.movie-studio .studio-label{width:100%}.movie-studio header{align-items:flex-start}}
+.timeline-page-controls{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1rem 0}.timeline-page-controls[hidden]{display:none}.timeline-page-controls button{min-height:2.75rem}
